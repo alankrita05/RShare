@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>Rshare</title>
+  	<%= stylesheet_link_tag    "application", :media => "all" %>
+  	<%= stylesheet_link_tag "site" %>
+  	<%= javascript_include_tag "application" %>
+  	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="topbar">
+	<%= link_to_unless_current("Home", { :action => "index", :controller => "site" }) %> |
+	<%= link_to_unless_current("About", { :action => "about", :controller => "site" }) %> |
+	<%= link_to_unless_current("Help", { :action => "help", :controller => "site" }) %> |
+	<%= link_to_unless_current("Register", {:action => "register", :controller => "user"}) %>
+	</div>
+	<div id="content">
+	<% if flash[:notice] -%>
+		<div id="notice"><%= flash[:notice] %></div>
+	<% flash[:notice] = nil %>
+	<% end -%>
+	<%= yield %>
+	</div>
+</body>
+</html>
